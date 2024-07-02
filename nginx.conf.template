@@ -26,13 +26,27 @@ http {
         location /api {
             access_log on;
             include proxy_params;
-            proxy_pass http://${api}:8080;
+            proxy_pass http://${api}:8000;
             proxy_redirect default;
         }
-	location /referential {
+	    location /referential {
             access_log on;
             include proxy_params;
             proxy_pass http://${referential}:8081;
+
+            proxy_redirect default;
+        }
+        location /bfe {
+            access_log on;
+            include proxy_params;
+            proxy_pass http://${bfe}:8082;
+
+            proxy_redirect default;
+        }
+        location / {
+            access_log on;
+            include proxy_params;
+            proxy_pass http://${vitemo}:5173;
 
             proxy_redirect default;
         }
